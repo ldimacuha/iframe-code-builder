@@ -1,32 +1,81 @@
-.App {
-  text-align: center;
+.row.no-margin-bottom {
+    margin-bottom: 0;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.no-padding {
+    padding: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+body ul.tabs>li>a {
+    color: #084d6d !important;
 }
 
-.App-link {
-  color: #61dafb;
+body ul.tabs>li>a:hover {
+    background: #084d6d !important;
+    color: #ffffff !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body ul.tabs>li>a.active {
+    background: #084d6d !important;
+    color: #ffffff !important;
+    font-weight: bold;
+}
+
+body ul.tabs>li.disabled>a {
+    background: none !important;
+    color: #cccccc !important;
+}
+
+body ul.tabs>li.disabled>a:hover {
+    cursor: not-allowed !important;
+}
+
+body ul.tabs>li.indicator {
+    background-color: #5bc4bf;
+}
+
+/* Colours Tab */
+
+body ul.tabs.tabs-secondary>li>a {
+    background-color: #efefef;
+    color: #666666 !important;
+}
+
+body ul.tabs.tabs-secondary>li>a:hover {
+    background: #cccccc !important;
+    color: #000000 !important;
+}
+
+body ul.tabs.tabs-secondary>li>a.active {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-weight: bold;
+}
+
+body ul.tabs.tabs-secondary>li.disabled>a {
+    background: #cccccc !important;
+    color: #eeeeee !important;
+}
+
+body ul.tabs.tabs-secondary>li.disabled>a:hover {
+    cursor: not-allowed !important;
+}
+
+body ul.tabs.tabs-secondary>li.indicator {
+    background-color: #ffffff;
+}
+
+#code,
+#snippet {
+    font-family: 'Inconsolata', 'Roboto', sans-serif !important;
+    font-size: 13px;
+}
+
+
+#tab-colours .switch {
+    margin-left: 15px;
+}
+
+.hidden {
+    display: none;
 }
