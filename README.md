@@ -1,6 +1,6 @@
 ## iFrame Code Builder
 
-iFrame Code Builder is an application built for [Scout Talent :Recruit](http://www.scouttalenthq.com) Career Vacancies Widget.  This app was created as a tool for [Scout Talent :Recruit](http://www.scouttalenthq.com)'s client success and support specialists to assist in client branding and software implementations.
+iFrame Code Builder is an application for building Career Vacancies widget in [Scout Talent :Recruit](http://www.scouttalenthq.com).  This app was created as a tool for [Scout Talent :Recruit](http://www.scouttalenthq.com)'s client success and support specialists to assist in client branding and software implementations.
 
 ### Development Setup
 - Clone the repository.
