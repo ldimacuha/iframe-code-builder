@@ -25,7 +25,7 @@ export default class Snippet extends Component {
     }
 
     handleSnippet(slug, embed, height) {
-        const slugId = slug.replace("-", "_");
+        let slugId = slug.replace(/-/g, "_");
 
         let iframeSnippet = ['<!-- Begin iFrame snippet -->',
             '<iframe src="https://' + slug + '.applynow.net.au/" width="100%" style="height: auto;" frameborder="0" id="' + slugId + '_iframe"></iframe>',
