@@ -92,7 +92,7 @@ export default class Colour extends Component {
         const colorEmploymentStatusPicker = states.displayEmploymentStatus ? this.handleColorPanel('Employment Status', colorEmploymentStatusBadgeStyle, states.colorTextEmploymentStatus, 'colorTextEmploymentStatus', 'no switch', '', true) : '';
 
         const colorExpiryDateBadgeStyle = this.handleBadge(states.colorTextExpiryDate);
-        const colorExpiryDatePicker = states.displayExpiryDate ? this.handleColorPanel('Expiry Date', colorExpiryDateBadgeStyle, states.colorTextExpiryDate, 'colorTextExpiryDate', 'no switch', true) : '';
+        const colorExpiryDatePicker = states.displayExpiryDate ? this.handleColorPanel('Expiry Date', colorExpiryDateBadgeStyle, states.colorTextExpiryDate, 'colorTextExpiryDate', 'no switch', '', true) : '';
 
         const colorLocationBadgeStyle = this.handleBadge(states.colorTextLocation);
         const colorLocationPicker = states.displayLocation ? this.handleColorPanel('Location', colorLocationBadgeStyle, states.colorTextLocation, 'colorTextLocation', 'no switch', '', true) : '';
