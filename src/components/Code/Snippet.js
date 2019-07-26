@@ -12,7 +12,8 @@ export default class Snippet extends Component {
             embed: 'iframe',
             objectHeight: 400,
             minHeight: 300,
-            maxHeight: 1000
+            maxHeight: 1000,
+            domain: 'applynow.net.au'
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSnippet = this.handleSnippet.bind(this);
@@ -28,16 +29,17 @@ export default class Snippet extends Component {
         let slugId = slug.replace(/-/g, "_");
 
         let iframeSnippet = ['<!-- Begin iFrame snippet -->',
-            '<iframe src="https://' + slug + '.applynow.net.au/" width="100%" style="height: auto;" frameborder="0" id="' + slugId + '_iframe"></iframe>',
+            '<iframe src="https://' + slug + '.'+ this.state.domain +'" width="100%" style="height: auto;" frameborder="0" id="' + slugId + '_iframe"></iframe>',
             '<script type="text/javascript" src="https://candidate-office.s3.amazonaws.com/js/iframe-resizer/iframeResizer.min.js"></script>',
             '<script type="text/javascript">iFrameResize(null, "#' + slugId + '_iframe");</script>',
             '<!-- End iFrame snippet -->'].join('\n');
 
         let objectSnippet = ['<!-- Begin Object snippet -->',
-            '<object data="https://' + slug + '.applynow.net.au/" width="100%" height="' + height + '" id="' + slugId + '_object">',
-            '<embed src="https://' + slug + '.applynow.net.au/" width="100%"></embed>',
+            '<object data="https://' + slug + '.'+ this.state.domain +'" width="100%" height="' + height + '" id="' + slugId + '_object">',
+            '<embed src="https://' + slug + '.'+ this.state.domain +'" width="100%"></embed>',
             '</object>',
             '<!-- End Object snippet -->'].join('\n');
+
 
         let snippet;
         switch (embed) {
@@ -51,19 +53,25 @@ export default class Snippet extends Component {
                 snippet = iframeSnippet;
         }
         return snippet;
+
+        let domain = this.state.domain;
     }
 
     render() {
         let snippet = this.handleSnippet(this.state.slug, this.state.embed, this.state.objectHeight);
-        let iframe = 'https://' + this.state.slug + '.applynow.net.au/';
+        let iframe = 'https://' + this.state.slug + '.' + this.state.domain;
 
         let embedMethod = [];
+        let domainSelect = [];
 
         let iframeChecked = this.state.embed === 'iframe' ? true : false;
         let objectChecked = this.state.embed === 'object' ? true : false;
 
+        let auChecked = this.state.domain === 'applynow.net.au' ? true : false;
+        let caChecked = this.state.domain === 'scouterecruit.net' ? true : false;
+
         embedMethod.push(
-            <div key="0">
+            <div className="col s6" key="0">
                 <div className="col s12">
                     <label>Embed Method</label>
                 </div>
@@ -83,6 +91,28 @@ export default class Snippet extends Component {
                 </div>
             </div>);
 
+        domainSelect.push(
+            <div className="col s6" key="0">
+                <div className="col s12">
+                    <label>Domain</label>
+                </div>
+                <div className="input-field col s12">
+                    <div className="col s12">
+                        <label>
+                            <input id="auRadio" name="domain" type="radio" defaultChecked={auChecked} defaultValue="applynow.net.au" onChange={this.handleInputChange} />
+                            <span htmlFor="auRadio">applynow.net.au</span>
+                        </label>
+                    </div>
+                    <div className="col s12">
+                        <label>
+                            <input id="caRadio" name="domain" type="radio" defaultChecked={caChecked} defaultValue="scouterecruit.net" onChange={this.handleInputChange} />
+                            <span htmlFor="caRadio">scouterecruit.net</span>
+                        </label>
+                    </div>
+                </div>
+            </div>);
+
+
         const gridStyle = 'input-field col s12';
 
         const rangeStyle = {
@@ -99,14 +129,14 @@ export default class Snippet extends Component {
 
         const objectHeight = [];
         objectHeight.push(
-            <div className={gridStyle}>
+            <div className={gridStyle} key="0">
                 <label htmlFor="objectHeight" style={labelStyle}>Object Height</label>
                 <div className="clearfix"></div>
                 <i className="material-icons prefix" key="0">format_line_spacing</i>
                 <p className="range-field" style={rangeStyle}>
                     {this.state.objectHeight + 'px'}
                     <input type="range" id="objectHeight" name="objectHeight" min={this.state.minHeight} max={this.state.maxHeight} defaultValue={this.state.objectHeight} onChange={this.handleInputChange} />
-                    <span class="helper-text">A fixed object height must be specified.</span>
+                    <span className="helper-text">A fixed object height must be specified.</span>
                 </p>
             </div>);
 
@@ -130,6 +160,8 @@ export default class Snippet extends Component {
                                 </div>
 
                                 {this.state.slug === '' ? '' : embedMethod}
+                                {this.state.slug === '' ? '' : domainSelect}
+                                
                                 {this.state.slug !== '' && this.state.embed === 'object' ? objectHeight : ''}
                                 {this.state.slug === '' ? '' : <div className="col s12"><div className="card black white-text"><div id="snippet" className="card-content"> {snippet} </div><div className="card-action white black-text"><CopyToClipboard text={snippet}><a href="#modal-copysnippet" className="modal-trigger blue-text">Copy Code to Clipboard</a></CopyToClipboard></div></div></div>}
                                 <Modal id="modal-copysnippet" title={copyCodeTitle} text={copyCodeText} />
